@@ -1,0 +1,250 @@
+mapPropsToValues?: (props: Props) => Values
+If this option is specified, then Formik will transfer its results into updatable form state and make these values available to the new component as props.values. If mapPropsToValues is not specified, then Formik will map all props that are not functions to the inner component's props.values. That is, if you omit it, Formik will only pass props where typeof props[k] !== 'function', where k is some key.
+
+Even if your form is not receiving any props from its parent, use mapPropsToValues to initialize your forms empty state.
+
+
+
+initialValues: Values
+Initial field values of the form, Formik will make these values available to render methods component as values.
+
+Even if your form is empty by default, you must initialize all fields with initial values otherwise React will throw an error saying that you have changed an input from uncontrolled to controlled.
+
+Note: initialValues not available to the higher-order component*, use mapPropsToValues instead.
+
+onReset?: (values: Values, formikBag: FormikBag) => void
+
+*https://reactjs.org/docs/higher-order-components.html
+
+const [ data, setData ] = useState({});
+
+const handleChange = (key, value) => {
+    data[key] = value
+    setData({...data, [key]: value});
+}
+
+const FormikTest = withFormik({
+    mapPropsToValues({ email }) {
+    return {
+       day: values.day,
+       month: values.month,
+       post: values.post,
+       content: values.content,
+       checkbox: values.checkbox,
+    }
+    },
+})
+
+
+
+withFormik({
+enableReinitialize: true,
+mapPropsToValues: (props: Props) => {        
+    return (
+        {
+            id: props.initialData.id,
+            name: props.initialData.name
+        }
+    );
+},
+handleSubmit: (values, {  props: Props, setSubmitting }) => {
+    Props.submitHandler(values);
+},
+})(NewDatasourceForm);
+
+Fazer get de um post por id e exibir as props dele no Formik:
+etapas - 
+1. get por id (feito)
+2. exibir conteudo na tela: setar um state que armazene as infos da table
+
+
+npm link
+npm link [<@scope>/]<pkg>[@<version>]
+
+/*
+//dialog fora do map
+// e o formik dentro do dialog
+function FormDialog() {
+  const { open, setOpen } = useDialog();
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const [idPost, setIdPost] = useState("");
+  const handleClose = () => {
+    setOpen(false);
+  };
+    const handleUpdate = async (values, id) => {
+    const res = await api.put(`/posts/${id}`);
+    console.log(values, id)
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open form dialog
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Digite o que deseja editar.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="post"
+            label="post"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="day"
+            label="day"
+            type="number"
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="month"
+            label="month"
+            type="number"
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="content"
+            label="content"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel action</Button>
+          <Button onClick={handleUpdate}>Edit post</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+      
+day: values.day,
+month: values.month,
+post: values.post,
+content: values.content,
+checkbox: values.checkbox,
+  setListCard([
+    ...listCard,
+    {
+      id: idPost,
+      day: values.day,
+      month: values.month,
+      post: values.post,
+      content: values.content,
+      checkbox: values.checkbox,
+    },
+  ]);
+
+
+  onsubmit definido no comeco do formik
+  no onsubmit, na funcao anonima, levar o id como parametro para saber
+
+initialValues={{
+  {posts?.map((post, key) => {
+    return (
+      post: {posts.post},
+      day: {posts.day},
+      month: {posts.month},
+      content: {posts.content},
+      checkbox: {posts.checkbox},
+      
+    );
+  })}
+}}
+          <Formik
+          validationSchema={schema}
+          initialValues={{
+            post: "",
+            day: "",
+            month: "",
+            checkbox: false,
+          }}
+          onSubmit={(values) => {
+            console.log(values);
+            handleSubmit(values);
+
+        >
+*/
+
+
+
+
+
+
+COMO FAZER AGORA -------- PLACEHOLDER COM VALOR ANTERIOR DO CAMPO 
+
+Sem db --- os valores ja estao no arquivo >> no get
+Formulario deve atualizar conforme houver atualizacao de valores
+Atributos e props do react -- como passar (props drilling)
+Prop com defaultvalue** --> é onde tera o state com o valor armazenado
+
+// 
+primeira coisa,tu tem q esquecer o Db,vc já tem os dados, n precisa ir buscar lá dnv
+vamos isolar o problema
+o que vc tem q fazer
+colocar o dados na tela assim q aperta o botão de update
+Esses dados foram puxados de algum lugar? Já sim, no get
+Depois disso, como q funciona um formulário
+Se eu tô usando o formik, como eu faço pra colocar os valores nos inputs
+no caso, textareas
+Tá blz,sabendo dessas coisas, os valores tem q se comportar q nem um placeholder da vida
+o placeholder é um atributo de uma tag html
+como funcionam os atributos no react
+PROPS
+Hmm, vc terá de passar uma prop com defaultValue
+essa é a dica
+e o default value vai ser onde terá seu state com o dado armazenado
+
+como esta: 
+
+pagina , h1
+form de submit new post
+
+tabela com dados ja colocados ou alterados
+opcoes de alterar dados ou remover a linha com dois botoes 
+
+botao alterar -> abre dialog
+
+no dialog:
+form com os itens de post 
+
+botao enviar e cancelar
+
+como deve ficar: 
+
+no dialog, aparecer os dados da linha de texto ja existente
+
+pseudocodigo:
+START;
+ABRIR Modal;
+    EXECUTAR GET Post by ID;
+        PEGAR dados do Post;
+    MOSTRAR Dados previos;
+END
+
+na aplicacao:
+
+START; 
+CLICA Update;
+    GET Post by ID;
+        GET PostInfo;
+    ABRIR Modal;
+
