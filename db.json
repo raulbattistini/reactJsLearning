@@ -1,0 +1,77 @@
+{
+  "people": [
+    {
+      "id": 0,
+      "name": "John",
+      "email": "John@example.com"
+    },
+    {
+      "id": 1,
+      "name": "Mary",
+      "email": "Mary@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Lucy",
+      "email": "Lucy@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Jose",
+      "email": "Jose@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Anne",
+      "email": "Anne@example.com"
+    },
+    {
+      "id": 5,
+      "name": "Will",
+      "email": "John@example.com"
+    },
+    {
+      "id": 6,
+      "name": "Jack",
+      "email": "Jack@example.com"
+    },
+    {
+      "id": 7,
+      "name": "Fernanda",
+      "email": "Fernanda@example.com"
+    }
+  ],
+  "posts": [
+    {
+      "day": 19,
+      "month": 10,
+      "post": "2wtg4",
+      "content": "postcontent",
+      "checkbox": "",
+      "id": 6
+    },
+    {
+      "day": "",
+      "month": "",
+      "content": "",
+      "checkbox": "",
+      "id": 7
+    },
+    {
+      "day": "",
+      "month": "",
+      "post": "rage",
+      "content": "",
+      "checkbox": "",
+      "id": 9
+    },
+    {
+      "day": 5,
+      "month": 1,
+      "post": "thteh",
+      "content": "31r3r3",
+      "checkbox": true,
+      "id": 10
+    }
+  ]
+}
